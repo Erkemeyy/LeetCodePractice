@@ -1,50 +1,52 @@
 public class GreatestCommonDivisorOfStrings {
     public static void main (String[] args) {
         GreatestCommonDivisorOfStrings gcd = new GreatestCommonDivisorOfStrings();
-        System.out.println(gcd.gcdOfStrings("ABABABAB", "AB"));
-        StringBuilder test = new StringBuilder("a");
-        System.out.println(test.toString() == "a");
+        System.out.println(gcd.gcdOfStrings("AB", "ABABAB"));
+
+
 
     }
     public String gcdOfStrings(String str1, String str2) {
         StringBuilder newStr = new StringBuilder();
         int x = str1.length();
         int y = str2.length();
-        int smallNum =0;
-        int largestNum = 0;
+        int smallNum;
+        int largestNum;
+        String longestString;
 
 
 
         if (x > y){
             smallNum = y;
             largestNum = x;
+            longestString = str1;
+
         } else{
             smallNum = x;
             largestNum = y;
+            longestString = str2;
         }
 
-        if (largestNum % smallNum ==0 ){
-            String newStr1 = "";
+        if ((str1 + str2).equals(str2 + str1)){
+            int gcd = 0;
+            int i = smallNum - 1;
 
-            while(!newStr.toString().equals(str1)){
-                int i =0;
-                if(str1.charAt(0) == str2.charAt(0)){
-                    newStr.append(str1.charAt(0));
-                    str1.replace(String.valueOf(str2.charAt(0)), "");
+            
+            if (largestNum % smallNum == 0){
+                gcd = smallNum;
+
+            } else {
+                while (largestNum % i != 0 || smallNum % i != 0){
+                    i--;
+                    gcd = i;
+
                 }
-
-
-
             }
-
-
-
-        } else {
+            newStr.append(longestString.substring(0, gcd));
+        }  else {
             newStr = new StringBuilder("");
         }
-
         return newStr.toString();
-
 
 
     }
